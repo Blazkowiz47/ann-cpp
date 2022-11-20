@@ -10,6 +10,55 @@
 
 namespace ANN
 {
+    void normalise(std::vector<std::vector<double>> &result,std::vector<std::vector<double>> &matrix)
+    {
+        std::vector<std::vector<double>> result = std::vector(matrix.size(), std::vector<double>(matrix[0].size(), 0.0));
+        double max1=INT_MIN;
+        for(int i=0;i<matrix.size();i++)
+        {
+            for(int j=0;j<matrix[0].size();j++)
+            {
+                max1=std::max(max1,matrix[i][j]);
+            }
+        }
+
+        ANN::divide(result,matrix,max1);
+
+    }
+
+    std::vector<std::vector<double>> copy(std::vector<std::vector<double>> &matrix)
+    {
+        std::vector<std::vector<double>> result = std::vector(matrix.size(), std::vector<double>(matrix[0].size(), 0.0));
+
+        for(int i=0;i<matrix.size();i++)
+        {
+            for(int j=0;j<matrix[0].size();j++)
+            {
+                result[i][j]=matrix[i][j];
+            }
+        }
+
+        return result;
+    }
+
+    std::vector<std::vector<std::vector<std::vector<double>>>> copy(std::vector<std::vector<std::vector<std::vector<double>>>> &matrix)
+    {
+        auto result = std::vector(matrix.size(), std::vector(matrix[0].size(), std::vector(matrix[0][0].size(), std::vector<double>(matrix[0][0][0].size(), 0.0))));
+
+        for(int i=0;i<matrix.size();i++)
+        {
+            for(int j=0;j<matrix[0].size();j++)
+            {
+                for(int k=0;k<matrix.size();k++)
+                    
+                    for(int l=0;l<matrix.size();l++)
+
+                        result[i][j][k][l] = matrix[i][j][k][l];
+            }
+        }
+
+        return result;
+    }
 
     void dot(std::vector<std::vector<double>> &result, std::vector<std::vector<double>> &matrixA, std::vector<std::vector<double>> &matrixB)
     {

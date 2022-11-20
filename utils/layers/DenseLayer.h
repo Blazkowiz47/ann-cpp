@@ -12,7 +12,7 @@ namespace ANN
         private:
             int input_features;
             int output_features;
-            std::vector<std::vector<double>> weights, z, a_prev;
+            std::vector<std::vector<double>> weights, z, a_prev, a, dw, db;
             std::vector<std::vector<double>> bias; 
             std::string activation;
             std::pair<double,double> grad_clip;        
@@ -22,6 +22,7 @@ namespace ANN
             DenseLayer(int input_features, int output_features, std::string activation, std::string weight_initialiser, std::string bias_initialiser, std::pair<double,double> grad_clip);
             std::vector<std::vector<double>> feedforward(std::vector<std::vector<double>> a_prev);
             std::vector<std::vector<double>> backpropogation(std::vector<std::vector<double>> da_next);
+            void update_weights(double lr);
             void print_weights();
     };
 }

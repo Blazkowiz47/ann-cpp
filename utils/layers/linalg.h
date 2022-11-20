@@ -4,6 +4,8 @@
 #include <vector>
 
 namespace ANN{
+    void normalise(std::vector<std::vector<double>> &result,std::vector<std::vector<double>> &matrix);
+    std::vector<std::vector<double>> copy(std::vector<std::vector<double>> &result);
     void dot(std::vector<std::vector<double>> &result, std::vector<std::vector<double>> &matrixA, std::vector<std::vector<double>> &matrixB);
     void transpose(std::vector<std::vector<double>> &result, std::vector<std::vector<double>> &matrix);
     

@@ -26,6 +26,7 @@ namespace ANN{
 
     ANN::DenseLayer::DenseLayer(int input_features, int output_features, std::string activation, std::string weight_initialiser, std::string bias_initialiser, std::pair<double,double> grad_clip)
     {
+        this->activation = activation;
         this->grad_clip = grad_clip;
         this->input_features=input_features;
         this->output_features=output_features;
@@ -35,31 +36,64 @@ namespace ANN{
 
         ANN::Initialiser::initialiser(weight_initialiser)(weights);
         ANN::Initialiser::initialiser(bias_initialiser)(bias);
+
+        ANN::normalise(weights,weights);
     }
 
     std::vector<std::vector<double>> DenseLayer::feedforward(std::vector<std::vector<double>> a_prev)
     {
         std::vector<std::vector<double>> z;
         std::vector<std::vector<double>> a;
+        
+        this->a_prev = ANN::copy(a_prev);
+
         int r=a_prev.size();
         int c=a_prev[0].size();
 
         ANN::multiply(z,a_prev,weights);
         ANN::add(z,z,bias);
-        this->z=z;
-
-        ANN::exp(a,z);
-
         
+        this->z=ANN::copy(z);
+
+        ANN::Activation::activation(this->activation)(z);
+        
+        this->a=ANN::copy(z);
+
         return a;
-
-
     }
 
-    // std::vector<std::vector<double>> DenseLayer::backpropogation(std::vector<std::vector<double>> da_next)
-    // {
-    //     return {};
-    // }
+    std::vector<std::vector<double>> DenseLayer::backpropogation(std::vector<std::vector<double>> da_next)
+    {
+        std::vector<std::vector<double>> a_prev_t, dg, dw, db, dz, w_t, da;
+        ANN::Activation::d_activation(this->activation)(a);
+        dg=a;
+
+        ANN::transpose(w_t,weights);
+        ANN::multiply(dz,da_next,dg);
+        ANN::transpose(a_prev,a_prev);
+        a_prev_t=a_prev;
+
+        ANN::dot(dw,a_prev_t,dz);
+        ANN::sum(db,dz,0);
+        ANN::dot(da,dz,w_t);
+
+        this->db=ANN::copy(db);
+        this->dw=ANN::copy(dw);
+        
+
+        return da;
+    }
+
+    void DenseLayer::update_weights(double lr)
+    {
+
+        ANN::multiply(dw,dw,-lr);
+        ANN::add(weights,weights,dw);
+        ANN::multiply(db,db,-lr);
+        ANN::add(bias,bias,db);
+    }
+
+   
     
     void DenseLayer::print_weights() {
 
