@@ -20,6 +20,9 @@ namespace ANN{
     void exp(std::vector<std::vector<double>> &result, std::vector<std::vector<double>> &matrix);
     void exp(std::vector<std::vector<std::vector<std::vector<double>>>> &result, std::vector<std::vector<std::vector<std::vector<double>>>> &matrix);
 
+    void inv(std::vector<std::vector<double>> &result, std::vector<std::vector<double>> &matrix);
+    void inv(std::vector<std::vector<std::vector<std::vector<double>>>> &result, std::vector<std::vector<std::vector<std::vector<double>>>> &matrix);
+
     void multiply(std::vector<std::vector<double>> &result, std::vector<std::vector<double>> &matrix, double n);
     void multiply(std::vector<std::vector<std::vector<double>>> &result, std::vector<std::vector<std::vector<double>>> &matrix, double n);
     void multiply(std::vector<std::vector<std::vector<std::vector<double>>>> &result, std::vector<std::vector<std::vector<std::vector<double>>>> &matrix, double n);

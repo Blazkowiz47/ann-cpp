@@ -226,6 +226,40 @@ namespace ANN
         }
         result = res;
     }
+    
+    void inv(std::vector<std::vector<double>> &result, std::vector<std::vector<double>> &matrix) {
+        int row = matrix.size();
+        int col = matrix[0].size();
+        std::vector<std::vector<double>> res(row, std::vector<double>(col, 0));
+        for (int i = 0; i < row; i++)
+        {
+            for (int j = 0; j < col; j++)
+            {
+                res[i][j] = 1.0/matrix[i][j];
+            }
+        }
+        result = res;
+    }
+
+    void inv(std::vector<std::vector<std::vector<std::vector<double>>>> &result, std::vector<std::vector<std::vector<std::vector<double>>>> &matrix){
+        int row = matrix.size();
+        int col = matrix[0].size();
+        std::vector<std::vector<std::vector<std::vector<double>>>> res(row, std::vector<std::vector<std::vector<double>>>(col, std::vector<std::vector<double>>(matrix[0][0].size(), std::vector<double>(matrix[0][0][0].size(), 0))));
+        for (int i = 0; i < row; i++)
+        {
+            for (int j = 0; j < col; j++)
+            {
+                for (int k = 0; k < matrix[0][0].size(); k++)
+                {
+                    for (int l = 0; l < matrix[0][0][0].size(); l++)
+                    {
+                        res[i][j][k][l] =1.0 / matrix[i][j][k][l]; 
+                    }
+                }
+            }
+        }
+        result = res;
+    }
 
     void multiply(std::vector<std::vector<double>> &result, std::vector<std::vector<double>> &matrix, double n)
     {
