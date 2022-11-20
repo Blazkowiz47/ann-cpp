@@ -7,6 +7,7 @@
 #include <time.h>
 #include "DenseLayer.h"
 #include "linalg.h"
+#include "activation.h"
 
 namespace ANN{
 
