@@ -4,6 +4,7 @@
 #include <iomanip>
 #include <fstream>
 #include <cmath>
+#include <climits>
 #include <algorithm>
 
 #include "linalg.h"
@@ -12,7 +13,7 @@ namespace ANN
 {
     void normalise(std::vector<std::vector<double>> &result,std::vector<std::vector<double>> &matrix)
     {
-        std::vector<std::vector<double>> result = std::vector(matrix.size(), std::vector<double>(matrix[0].size(), 0.0));
+        
         double max1=INT_MIN;
         for(int i=0;i<matrix.size();i++)
         {

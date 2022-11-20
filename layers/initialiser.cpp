@@ -2,8 +2,8 @@
 #include <cstdlib>
 #include <time.h>
 
-#include "init.h"
-
+#include "initialiser.h"
+#include "linalg.h"
 
 namespace ANN {
 
@@ -16,6 +16,7 @@ namespace ANN {
                 result[i][j]=rand();
             }
         }
+        ANN::normalise(result, result);
     }
 
     void Initialiser::zeros(std::vector<std::vector<double>> &result) {

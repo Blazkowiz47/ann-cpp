@@ -15,6 +15,7 @@ namespace ANN {
             void static d_linear(std::vector<std::vector<double>> &a);
             void static d_sigmoid(std::vector<std::vector<double>> &a);
             void static d_relu(std::vector<std::vector<double>> &a);
+            
             auto static activation(std::string activation) {
                 if (activation.compare("relu") == 0) {
                     return relu;
@@ -24,7 +25,7 @@ namespace ANN {
                 }
                 return linear;
             }
-            
+
             auto static d_activation(std::string activation) {
                 if (activation.compare("relu") == 0) {
                     return d_relu;

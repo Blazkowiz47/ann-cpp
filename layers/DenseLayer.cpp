@@ -4,7 +4,7 @@
 #include <iostream>
 
 #include "DenseLayer.h"
-#include "init.h"
+#include "initialiser.h"
 #include "layer.h"
 #include "linalg.h"
 #include "activation.h"
@@ -37,7 +37,6 @@ namespace ANN{
         ANN::Initialiser::initialiser(weight_initialiser)(weights);
         ANN::Initialiser::initialiser(bias_initialiser)(bias);
 
-        ANN::normalise(weights,weights);
     }
 
     std::vector<std::vector<double>> DenseLayer::feedforward(std::vector<std::vector<double>> a_prev)
@@ -50,7 +49,7 @@ namespace ANN{
         int r=a_prev.size();
         int c=a_prev[0].size();
 
-        ANN::multiply(z,a_prev,weights);
+        ANN::dot(z,a_prev,weights);
         ANN::add(z,z,bias);
         
         this->z=ANN::copy(z);
