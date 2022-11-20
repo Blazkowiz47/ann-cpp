@@ -1,11 +1,11 @@
 #include <vector>
 #include <utility>
 #include <string>
-#include <layer.h>
-#include <cstdlib>
 #include <iostream>
-#include <time.h>
+
 #include "DenseLayer.h"
+#include "initialiser.h"
+#include "layer.h"
 #include "linalg.h"
 
 namespace ANN{
@@ -19,27 +19,9 @@ namespace ANN{
         // grad_clip=(-100,100);
         weights = std::vector(input_features, std::vector<double>(output_features, 0.0));
         bias = std::vector(output_features, std::vector<double>(1, 0.0));
-        
-        initialise(weight_initialiser,bias_initialiser);
-    
-    }
-    void DenseLayer::initialise(std::string weight_initialiser = "random", std::string bias_initialiser = "zero")
-    {
-        srand(time(0));
-        for(int i=0;i<weights.size();i++)
-        {
-            for(int j=0;j<weights[0].size();j++)
-            {
-                weights[i][j]=rand();
-            }
-        }
 
-        for(int i=0;i<bias.size();i++)
-        {
-            bias[i][0]=0;
-        }
-        
-        
+        ANN::initialiser(weight_initialiser)(weights);
+        ANN::initialiser(bias_initialiser)(bias);
     }
 
     std::vector<std::vector<double>> DenseLayer::feedforward(std::vector<std::vector<double>> a_prev)
@@ -53,7 +35,7 @@ namespace ANN{
 
         ANN::add(z,z,bias);
         
-        ANN::sigmoid(a,z);
+        ANN::exp(a,z);
 
         
         return a;
@@ -65,4 +47,5 @@ namespace ANN{
     {
 
     }
+
 }
