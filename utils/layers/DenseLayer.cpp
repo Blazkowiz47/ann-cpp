@@ -5,8 +5,9 @@
 #include <cstdlib>
 #include <iostream>
 #include <time.h>
+#include "linalg.h"
 #include "DenseLayer.h"
-using namespace std;
+
 
 
 int input_features;
@@ -58,7 +59,9 @@ std::vector<std::vector<double>> feedforward(std::vector<std::vector<double>> a_
             ANN::multiply(z,a_prev,weights);
         }
     }
-    ANN::add(z,a,bias);
+
+    ANN::add(z,z,bias);
+
     ANN::sigmoid(a,z);
 
     
