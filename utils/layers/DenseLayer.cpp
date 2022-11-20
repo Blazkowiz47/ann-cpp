@@ -44,9 +44,9 @@ namespace ANN{
         int c=a_prev[0].size();
 
         ANN::multiply(z,a_prev,weights);
-
         ANN::add(z,z,bias);
-        
+        this->z=z;
+
         ANN::exp(a,z);
 
         
@@ -72,7 +72,7 @@ namespace ANN{
             std::cout<<"\n";
         }
 
-        std::cout<<"Bias:- \n";
+        std::cout<<"\nBias:- \n";
         for (int i = 0; i < bias.size(); i++)
         {
             for (int j = 0; j < bias[0].size(); j++)
