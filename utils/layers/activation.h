@@ -9,5 +9,5 @@ namespace ANN
     void sigmoid(std::vector<std::vector<double>> &result);
 }
 
-
 #endif
+
