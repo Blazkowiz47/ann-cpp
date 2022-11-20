@@ -2,12 +2,12 @@
 #include <cstdlib>
 #include <time.h>
 
-#include "initialiser.h"
+#include "init.h"
 
 
 namespace ANN {
 
-    void random(std::vector<std::vector<double>> &result) {
+    void Initialiser::random(std::vector<std::vector<double>> &result) {
         srand(time(0));
         for(int i=0;i<result.size();i++)
         {
@@ -18,7 +18,7 @@ namespace ANN {
         }
     }
 
-    void zeros(std::vector<std::vector<double>> &result) {
+    void Initialiser::zeros(std::vector<std::vector<double>> &result) {
         for(int i=0;i<result.size();i++)
         {
             for(int j=0;j<result[0].size();j++)
@@ -27,5 +27,5 @@ namespace ANN {
             }
         }
     }
-
+    
 }

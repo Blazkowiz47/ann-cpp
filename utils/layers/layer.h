@@ -5,13 +5,18 @@
 #include <string>
 
 
-class Layer 
+namespace ANN
 {
-    public:
-        Layer();
-        void initialise();
-        void feedforward();
-        void baackpropogation();
-};
+    class Layer 
+        {
+            public:
+                Layer(){};
+                void initialise(){};
+                void feedforward(){};
+                void baackpropogation(){};
+        };
+
+} // namespace ANN
+
 
 #endif

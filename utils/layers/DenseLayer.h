@@ -3,11 +3,11 @@
 #include <vector>
 #include <utility>
 #include <string>
-#include <layer.h>
+#include "layer.h"
 
 namespace ANN
 {
-    class DenseLayer : public Layer
+    class DenseLayer : public ANN::Layer
     {
         private:
             int input_features;
@@ -18,10 +18,11 @@ namespace ANN
             std::pair<double,double> grad_clip;        
 
         public:
-            DenseLayer(int input_features, int output_features, std::string activation = "linear", std::string weight_initialiser = "random", std::string bias_initialiser = "zero", std::pair<double,double> grad_clip = std::make_pair<double,double>(-100.0, 100.0));
+            DenseLayer(int input_features, int output_features);
+            DenseLayer(int input_features, int output_features, std::string activation, std::string weight_initialiser, std::string bias_initialiser, std::pair<double,double> grad_clip);
             std::vector<std::vector<double>> feedforward(std::vector<std::vector<double>> a_prev);
             std::vector<std::vector<double>> backpropogation(std::vector<std::vector<double>> da_next);
-
+            void print_weights();
     };
 }
 
