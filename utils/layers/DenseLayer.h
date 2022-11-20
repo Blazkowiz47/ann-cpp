@@ -19,7 +19,7 @@ class DenseLayer : public Layer
 
     public:
         DenseLayer(int input_features, int output_features, std::string activation = "linear", std::string weight_initialiser = "random", std::string bias_initialiser = "zero", std::pair<double,double> grad_clip = std::make_pair<double,double>(-100.0, 100.0));
-        void initialise();
+        void initialise(std::string weight_initialiser = "random", std::string bias_initialiser = "zero");
         std::vector<std::vector<double>> feedforward(std::vector<std::vector<double>> a_prev);
         std::vector<std::vector<double>> backpropogation(std::vector<std::vector<double>> da_next);
 
