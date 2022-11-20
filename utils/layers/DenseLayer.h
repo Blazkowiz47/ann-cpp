@@ -13,7 +13,7 @@ namespace ANN
             int input_features;
             int output_features;
             std::vector<std::vector<double>> weights, z, a_prev;
-            std::vector<double> bias; 
+            std::vector<std::vector<double>> bias; 
             std::string activation;
             std::pair<double,double> grad_clip;        
 
