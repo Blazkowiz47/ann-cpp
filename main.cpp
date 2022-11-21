@@ -60,7 +60,7 @@ int main() {
     std::cout<<test_x.size()<<" "<<test_x[0].size()<<'\n';
 
     
-    for(int i=0;i<10;i++)
+    for(int i=0;i<4;i++)
     {
         a1=h1.feedforward(train_x);
         a2=h2.feedforward(a1);
@@ -74,11 +74,11 @@ int main() {
 
         std::vector<std::vector<double>> a4,a5,a6;
         a4=out.backpropogation(loss);
-        out.update_weights(10);
+        out.update_weights(0.2);
         a5=h2.backpropogation(a4);
-        h2.update_weights(10);
+        h2.update_weights(0.2);
         a6=h1.backpropogation(a5);
-        h1.update_weights(10);
+        h1.update_weights(0.2);
         
 
         
