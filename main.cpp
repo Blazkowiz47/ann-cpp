@@ -60,36 +60,39 @@ int main() {
     std::cout<<test_x.size()<<" "<<test_x[0].size()<<'\n';
 
     
+    for(int i=0;i<10;i++)
+    {
+        a1=h1.feedforward(train_x);
+        a2=h2.feedforward(a1);
+        a3=out.feedforward(a2);
 
-    a1=h1.feedforward(train_x);
-    a2=h2.feedforward(a1);
-    a3=out.feedforward(a2);
 
+        double l=0.0;
 
-    double l=0.0;
+        ANN::Loss_function::loss_function("mse")(l,a3,train_y);
+        ANN::Loss_function::d_loss_function("mse")(loss,a3,train_y);
 
-    ANN::Loss_function::loss_function("mse")(l,a3,train_y);
-    ANN::Loss_function::d_loss_function("mse")(loss,a3,train_y);
+        std::vector<std::vector<double>> a4,a5,a6;
+        a4=out.backpropogation(loss);
+        out.update_weights(10);
+        a5=h2.backpropogation(a4);
+        h2.update_weights(10);
+        a6=h1.backpropogation(a5);
+        h1.update_weights(10);
+        
 
-    std::vector<std::vector<double>> a4,a5,a6;
-    a4=out.backpropogation(loss);
-    out.update_weights(10);
-    a5=h2.backpropogation(a4);
-    h2.update_weights(10);
-    a6=h1.backpropogation(a5);
-    h1.update_weights(10);
+        
+        // for(auto x : a3) {
+        //     for (auto y : x) {
+        //         std::cout<<y<<" ";
+        //     }
+        //     std::cout<<"\n";
+        // }
+        // std::cout<<"\n";
+
+        std::cout<<l<<" "<<'\n';
+    }
     out.print_weights();
-
-    
-    // for(auto x : a3) {
-    //     for (auto y : x) {
-    //         std::cout<<y<<" ";
-    //     }
-    //     std::cout<<"\n";
-    // }
-    // std::cout<<"\n";
-
-    std::cout<<l<<" "<<'\n';
 
 
 
