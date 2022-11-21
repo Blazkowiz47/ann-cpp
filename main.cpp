@@ -69,9 +69,6 @@ int main() {
     double l=0.0;
 
     ANN::Loss_function::loss_function("mse")(l,a3,train_y);
-    
-
-
     ANN::Loss_function::d_loss_function("mse")(loss,a3,train_y);
 
     std::vector<std::vector<double>> a4,a5,a6;
