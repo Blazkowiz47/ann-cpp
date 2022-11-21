@@ -10,7 +10,6 @@
 #include<stdlib.h>
 #include "layers/loss_func.h"
 
-
 std::vector<std::vector<double>> readcsv(std::string filename);
 std::vector<std::vector<double>> get_dataset(std::vector<std::vector<double>> &data);
 
