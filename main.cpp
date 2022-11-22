@@ -70,7 +70,7 @@ int main() {
     std::cout<<test_x.size()<<" "<<test_x[0].size()<<'\n';
 
     
-    for(int i=0;i<500;i++)
+    for(int i=0;i<100;i++)
     {
         a1=h1.feedforward(train_x);
         a2=h2.feedforward(a1);
