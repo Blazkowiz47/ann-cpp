@@ -4,7 +4,7 @@
 #include <vector>
 #include <utility>
 #include <string>
-#include <layer.h>
+#include "layer.h"
 
 namespace ANN
 {
@@ -22,13 +22,18 @@ namespace ANN
             std::pair<double,double> grad_clip;
 
         public:
-            ConvLayer(int input_channels, int output_channels, int stride = 1, int padding = 1, std::string activation = "linear", std::string weight_initialiser = "random", std::string bias_initialiser = "zero", std::pair<double,double> grad_clip = std::make_pair<double,double>(-100.0, 100.0));
+            // ConvLayer(int input_channels, int output_channels, int stride = 1, int padding = 1, std::string activation = "linear", std::string weight_initialiser = "random", std::string bias_initialiser = "zero", std::pair<double,double> grad_clip = std::make_pair<double,double>(-100.0, 100.0));
+            ConvLayer(int input_channels, int output_channels, std::string activation);
+            ConvLayer(int input_channels, int output_channels, int stride, int padding, std::string activation, std::string weight_initialiser, std::string bias_initialise, std::pair<double,double> grad_clip);
+            
             void initialise();
             void feedforward(std::vector<std::vector<std::vector<std::vector<double>>>> a_prev);
             void backpropogation(std::vector<std::vector<std::vector<std::vector<double>>>> da_next, std::vector<std::vector<std::vector<std::vector<double>>>> a_prev, std::vector<std::vector<std::vector<std::vector<double>>>> z);
+            void update_weights(double lr);
     };
     
-} // namespace ANN
+} 
+// namespace ANN
 
 
 #endif

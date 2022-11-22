@@ -76,7 +76,7 @@ namespace ANN{
         
         this->a=ANN::copy(z);
 
-        return a;
+        return this->a;
     }
 
     std::vector<std::vector<double>> DenseLayer::backpropogation(std::vector<std::vector<double>> da_next)

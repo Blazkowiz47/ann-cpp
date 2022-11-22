@@ -10,7 +10,7 @@ namespace ANN
     {
 
         std::vector<std::vector<double>> temp;
-
+        temp = std::vector(a.size(), std::vector<double>(a[0].size(), 0.0));
         ANN::sub(temp,a,y);
         ANN::square(temp, temp);
         ANN::divide(temp,temp,2);
